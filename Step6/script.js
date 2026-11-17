@@ -1,0 +1,156 @@
+"use strict";
+//lines declaraiton (slide 26)
+let lignes = 0;
+let total_points = 0;
+
+//persons array creation (slide 20-21)
+const persons = [
+    { nom: "nom-1", prenom: "prenom-1", points: 5 },
+    { nom: "nom-2", prenom: "prenom-2", points: 10 },
+    { nom: "nom-3", prenom: "prenom-3", points: 15 }
+];
+
+//to force init (slide 17)
+init();
+
+//init code completion (slide 22)
+function init() {
+    for (const person of persons) {
+        doInsert(person.nom, person.prenom, person.points);
+    }
+}
+
+
+//donewdata declaration (slide 51)(slide 53)
+function doNewData() {
+    const elt_nom = document.getElementById("form_nom");
+    const elt_prenom = document.getElementById("form_prenom");
+    const elt_points = document.getElementById("form_points");
+
+    const nom = elt_nom.value.trim();
+    const prenom = elt_prenom.value.trim();
+    const points = parseInt(elt_points.value);
+
+    if (nom === "" || prenom === "" || Number.isNaN(points)) {
+        window.alert("Formulaire incomplet !");
+    } else {
+        doInsert(nom, prenom, points);
+        persons.push({ nom: nom, prenom: prenom, points: points });
+
+        elt_nom.value = "";
+        elt_prenom.value = "";
+        elt_points.value = "";
+    }
+}
+
+//do insert declaration (slide 24)
+function doInsert(nom, prenom, points) {
+    total_points += points;
+    lignes++;
+    doInsertRowTable(lignes, nom, prenom, points);
+    update_summary();
+}
+
+//sumamry (slide 57)
+function update_summary() {
+    const element_lignes = document.getElementById("p1");
+    const element_points = document.getElementById("p3");
+
+    element_lignes.innerText = lignes + " ligne(s)";
+    element_points.innerText = "Total point(s)= " + total_points;
+}
+
+//writing in console(slide 19)
+function consoleTableau() {
+    console.log(persons);
+}
+
+function deleteRow() {
+    if (lignes === 0) {
+        window.alert("Le tableau est vide !");
+        return;
+    }
+
+    const table = document.getElementById("table");
+    const checked = table.querySelectorAll(".col_chkbox input:checked");
+
+    if (checked.length === 0) {
+        window.alert("Sélectionnez au moins une ligne !");
+        return;
+    }
+
+    if (!window.confirm("Supprimer " + checked.length + " ligne(s) ?")) {
+        return;
+    }
+
+    const rows = table.rows;
+
+    for (let i = rows.length - 1; i >= 1; i--) {
+        const row = rows[i];
+        const chk = row.querySelector("input[type='checkbox']");
+
+        if (chk.checked) {
+            total_points -= parseInt(row.cells[3].innerText);
+            lignes--;
+            row.remove();
+            persons.splice(i - 1, 1);
+        }
+    }
+
+    for (let i = 1; i < rows.length; i++) {
+        rows[i].cells[0].innerText = i;
+    }
+
+    window.alert("Suppression réussie !");
+    update_summary();
+}
+
+//function declaration slide 14
+function doInsertRowTable(num, nom, prenom, points) {
+    //creation of the table  (slide 14)
+    const table = document.getElementById("table");
+    //creation of the row to add in table  (slide 14)
+    const tr = document.createElement("tr");
+
+    //creation of the number cell (slide 14)
+    const td_num = document.createElement("td");
+    td_num.setAttribute("class", "col_number");
+    td_num.innerText = num;
+
+        //tp notes:
+        // check box is a compsent to add , to a  inner html "text a ecrire"
+    //creation of the nom cell (slide 14)
+    const td_nom = document.createElement("td");
+    td_nom.setAttribute("class", "col_text");
+    td_nom.innerText = nom;
+
+    //creation of the prenom cell (slide 14)
+    const td_prenom = document.createElement("td");
+    td_prenom.setAttribute("class", "col_text");
+    td_prenom.innerText = prenom;
+
+    //creation of the points cell (slide 14)
+    const td_point = document.createElement("td");
+    td_point.setAttribute("class", "col_number");
+    td_point.innerText = points;
+
+    //add checkbox(slie 14)
+    const td_select = document.createElement("td");
+    td_select.setAttribute("class", "col_chkbox");
+
+    const checkbox = document.createElement("input");//tp:
+    checkbox.setAttribute("type", "checkbox");
+    td_select.appendChild(checkbox);
+
+
+    //adding the components to a row (slide 14)
+    tr.appendChild(td_num);
+    tr.appendChild(td_nom);
+    tr.appendChild(td_prenom);
+    tr.appendChild(td_point);
+    tr.appendChild(td_select);
+
+    //adding the row to the table  (slide 14)
+    table.appendChild(tr);
+
+}

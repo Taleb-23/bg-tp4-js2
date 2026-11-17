@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <!--title of the project (slide 2)-->
+    <title>CRUD-Persons</title>
+</head>
+<body>
+    <!--/table inside container (slide 9)-->
+    <div id="table_container">
+        <!--table creation (slide 8)-->
+        <table id="table">
+            
+            <tr class="first">
+                <th class="col_number">N°</th>
+                <th class="col_text">Nom</th>
+                <th class="col_text">Prénom</th>
+                <th class="col_number">Points</th>
+                <th class="col_chkbox">Select</th>
+            </tr>
+        </table>
+
+        <div id="container_summary">
+            <p id="p1">0 ligne(s)</p>
+            <p id="p2"></p>
+            <p id="p3">Total point(s)= 0</p>
+        </div>
+         <!--Button creation (slide 13)-->
+         <button onclick="doInsert('nom', 'prenom', 10)">Ajouter</button>
+          <!--Button creation (slide 12)-->   
+         <button onclick="consoleTableau()">Console Tableau</button>
+    </div>
+</body>
+</html>

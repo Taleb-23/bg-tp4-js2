@@ -1,0 +1,49 @@
+/*table STYLING  using css -slide 9 */
+
+#table_container {
+    width: 80%;
+    margin: 30px auto;
+    font-family: Calibri, Arial, sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+
+#table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+#table th,
+#table td {
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+}
+
+/* first row modification (slide 9)*/
+#table .first th {
+    background-color: #007acc;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+#table td {
+    color: #333333;
+}
+
+.col_text {
+    text-align: left;
+}
+
+.col_number,
+.col_chkbox {
+    text-align: center;
+}
+
+.col_number,
+.col_chkbox {
+    width: 80px;
+}
