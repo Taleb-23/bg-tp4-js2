@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+TALEB ABDELNNOUR ET KESSARI ABDESSETAR groupe 3
 # ⚙️ TP4 (part 2) – JavaScript : Manipulation du DOM et mini-application CRUD
 
 ## 🎯 Objectif du TP
